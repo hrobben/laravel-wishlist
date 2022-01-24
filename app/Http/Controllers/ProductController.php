@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(5);
+        $products = Product::where('user_id', Auth::id())->paginate(5);
+        //$products = Product::latest()->paginate(5);
 
         return view('products.index',compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -38,12 +40,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->user_id = Auth::id();
         $request->validate([
             'name' => 'required',
             'detail' => 'required',
+            'url' => 'required',
+            'image' => 'required',
         ]);
 
-        Product::create($request->all());
+        Product::create(array_merge($request->all(), ['user_id' => Auth::id()]));
+        //Product::create($request->all());
 
         return redirect()->route('products.index')
             ->with('success','Product created successfully.');
@@ -83,6 +89,9 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'detail' => 'required',
+            'url' => 'required',
+            'image' => 'required',
+            'user_id' => 'required'
         ]);
 
         $product->update($request->all());

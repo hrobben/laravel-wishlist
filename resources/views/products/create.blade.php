@@ -38,6 +38,18 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
+                        <strong>Url:</strong>
+                        <input type="text" name="url" class="form-control" placeholder="Url">
+                    </div>
+                </div>
+               <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Image:</strong>
+                        <input type="text" name="image" class="form-control" placeholder="Image">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
                         <strong>Detail:</strong>
                         <textarea class="form-control" style="height:150px" name="detail"
                                   placeholder="Detail"></textarea>

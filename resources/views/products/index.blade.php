@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Laravel 8 CRUD Example from scratch</h2>
+                <h2>Laravel 8 CRUD</h2>
             </div>
             @guest
 
@@ -30,6 +30,9 @@
             <th width="280px">Action</th>
         </tr>
         @foreach ($products as $product)
+{{--
+            @if ($product->user_id == auth()->user()->id)
+--}}
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $product->name }}</td>
@@ -51,6 +54,9 @@
                     </form>
                 </td>
             </tr>
+{{--
+            @endif
+--}}
         @endforeach
     </table>
 
